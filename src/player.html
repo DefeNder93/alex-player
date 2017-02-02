@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-sm-12">
+        <video class="ap-video">
+            <source type='video/mp4'>
+        </video>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <progress class="ap-progress-bar" min='0' max='100' value='0'></progress>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="pull-right" class="btn-group" role="group" aria-label="Player Controls">
+            <button type="button" class="btn btn-default" ng-click="toggleMute()">
+                <span ng-hide="isMuted()" class="glyphicon glyphicon glyphicon-volume-up"></span>
+                <span ng-show="isMuted()" class="glyphicon glyphicon-volume-off"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="previous()">
+                <span class="glyphicon glyphicon-fast-backward"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="rewindBack()">
+                <span class="glyphicon glyphicon-backward"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="togglePlay()">
+                <span ng-hide="isPlaying()" class="glyphicon glyphicon-play"></span>
+                <span ng-show="isPlaying()" class="glyphicon glyphicon-stop"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="rewindForward()">
+                <span class="glyphicon glyphicon-forward"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="next()">
+                <span class="glyphicon glyphicon-fast-forward"></span>
+            </button>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <ul class="list-group ap-video-list">
+            <li ng-click="chooseVideo(video)" ng-class="video === activeVideo ? 'ap-active' : ''" class="list-group-item" ng-repeat="video in videoInfo">
+                {{::video.name}}
+            </li>
+        </ul>
+    </div>
+</div>

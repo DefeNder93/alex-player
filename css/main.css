@@ -1,0 +1,20 @@
+.ap-progress-bar {
+    width: 100%;
+}
+#demo-video {
+    max-width: 600px;
+}
+#demo-video video{
+    max-width: 600px;
+}
+.ap-video-list .list-group-item {
+    padding: 5px 15px;
+    cursor: pointer;
+}
+.ap-video-list .list-group-item:hover{
+    background-color: #E6E6E6;
+}
+.ap-video-list .list-group-item.ap-active {
+    background-color: #ccc;
+    cursor: default;
+}

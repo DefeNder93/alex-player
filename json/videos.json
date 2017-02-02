@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Big Buck Bunny",
+    "path": "http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"
+  },
+  {
+    "name": "Grass",
+    "path": "https://iandevlin.com/html5/media-player/grass.mp4"
+  },
+  {
+    "name": "Paddle Wheel",
+    "path": "https://iandevlin.com/html5/media-player/paddle-wheel.mp4"
+  },
+  {
+    "name": "Parrots",
+    "path": "https://iandevlin.com/html5/media-player/parrots.mp4"
+  }
+]
