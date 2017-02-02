@@ -8,8 +8,8 @@ angular.module('alexPlayer', [])
             controller: function(){
             },
             link: function(scope, elem, attrs) {
-                var player = findClass(elem[0], 'ap-video'),
-                    progressBar = findClass(elem[0], 'ap-progress-bar'),
+                var player = angular.element(elem[0].querySelector('.ap-video'))[0],
+                    progressBar = angular.element(elem[0].querySelector('.ap-progress-bar'))[0],
                     currentIndex = 0,
                     config = {
                         REWIND_STEP: 5
@@ -96,29 +96,6 @@ angular.module('alexPlayer', [])
                 }
 
                 player.addEventListener('timeupdate', updateProgressBar, false);
-
-                // source: http://stackoverflow.com/questions/12166753/how-to-get-child-element-by-class-name
-                function findClass(element, className) {
-                    var foundElement = null, found;
-                    function recurse(element, className, found) {
-                        for (var i = 0; i < element.childNodes.length && !found; i++) {
-                            var el = element.childNodes[i];
-                            var classes = el.className != undefined? el.className.split(" ") : [];
-                            for (var j = 0, jl = classes.length; j < jl; j++) {
-                                if (classes[j] == className) {
-                                    found = true;
-                                    foundElement = element.childNodes[i];
-                                    break;
-                                }
-                            }
-                            if(found)
-                                break;
-                            recurse(element.childNodes[i], className, found);
-                        }
-                    }
-                    recurse(element, className, false);
-                    return foundElement;
-                }
             },
             templateUrl: 'src/player.html'
         };
