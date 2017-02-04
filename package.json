@@ -1,0 +1,10 @@
+{
+  "name": "immutube",
+  "version": "0.0.1",
+  "description": "Functional Javascript Demo",
+  "author": "",
+  "dependencies": {
+    "compression": "^1.6.0",
+    "express": "^4.4.5"
+  }
+}
