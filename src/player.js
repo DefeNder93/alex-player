@@ -20,9 +20,14 @@ angular.module('alexPlayer', [])
                     scope.videoInfo = info;
                     scope.load(scope.videoInfo[0]);
                 });
+                scope.time = {
+                    current: 0,
+                    duration: 0
+                };
 
                 scope.load = function(video) {
                     player.currentTime = 0;
+                    currentIndex = scope.videoInfo.indexOf(video);
                     scope.activeVideo = video;
                     player.src = video.path;
                     player.load();
@@ -58,11 +63,13 @@ angular.module('alexPlayer', [])
                     player.currentTime = player.duration > player.currentTime + config.REWIND_STEP ? player.currentTime + config.REWIND_STEP : player.duration;
                 };
 
+                scope.setPosition = function(event) {
+                    player.currentTime = event.offsetX / progressBar.clientWidth * player.duration;
+                };
+
                 scope.next = function(){
                     player.currentTime = 0;
-                    if (currentIndex < scope.videoInfo.length) {
-                        currentIndex++;
-                    }
+                    currentIndex = currentIndex < scope.videoInfo.length-1 ? currentIndex+1 : 0;
                     scope.load(scope.videoInfo[currentIndex]);
                     play();
                 };
@@ -73,9 +80,7 @@ angular.module('alexPlayer', [])
                         return;
                     }
                     player.currentTime = 0;
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                    }
+                    currentIndex = currentIndex > 0 ? currentIndex-1 : scope.videoInfo.length-1;
                     scope.load(scope.videoInfo[currentIndex]);
                     play();
                 };
@@ -92,10 +97,27 @@ angular.module('alexPlayer', [])
                 // /states
                 
                 function updateProgressBar(){
-                    progressBar.value = Math.floor((100 / player.duration) * player.currentTime);
+                    progressBar.value = player.duration ? Math.floor((100 / player.duration) * player.currentTime) : progressBar.value;
                 }
 
-                player.addEventListener('timeupdate', updateProgressBar, false);
+                function updateTimeCounter() {
+                    scope.time.duration = Math.ceil(player.duration) || 0;
+                    scope.time.current = Math.ceil(player.currentTime) || 0;
+                }
+
+                function ontimeupdate() {
+                    updateProgressBar();
+                    updateTimeCounter();
+                    scope.$digest();
+                }
+
+                function playNext() {
+                    scope.next();
+                    scope.$digest();
+                }
+
+                player.addEventListener('timeupdate', ontimeupdate, false);
+                player.addEventListener('ended', playNext, false);
             },
             templateUrl: 'src/player.html'
         };

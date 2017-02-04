@@ -7,11 +7,14 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <progress class="ap-progress-bar" min='0' max='100' value='0'></progress>
+        <progress ng-click="setPosition($event)" class="ap-progress-bar" min='0' max='100' value='0'></progress>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-2">
+        {{time.current}} / {{time.duration}}
+    </div>
+    <div class="col-sm-6">
         <div class="pull-right" class="btn-group" role="group" aria-label="Player Controls">
             <button type="button" class="btn btn-default" ng-click="toggleMute()">
                 <span ng-hide="isMuted()" class="glyphicon glyphicon glyphicon-volume-up"></span>
